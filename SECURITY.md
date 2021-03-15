@@ -11,7 +11,7 @@
 
 ## Report security vulnerability
 
-**[REPORT HERE!]([WRITE])**
+**[REPORT HERE!](https://github.com/koviubi56/cardjitsu/issues/new?assignees=&labels=Bug&template=bug_report.md&title=BUG)**
 
 *Open an issue, and give it the bug label!*
 
@@ -27,6 +27,6 @@ We don't support everything forever.
 
 (YYYY.MM.DD.)
 
-Mainstream (New stuffs + bugfixes + security updates): [WRITE]
+Mainstream (New stuffs + bugfixes + security updates): 2021.04.31.
 
-Extended (~~New stuffs~~ + bugfixes + security updates): [WRITE]
+Extended (~~New stuffs~~ + bugfixes + security updates): 2021.05.31.
