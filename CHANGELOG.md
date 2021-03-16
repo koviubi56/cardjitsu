@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - The version print at the start of the code (`if __name__ == '__main__':`)
 ### Fixed
-- The level of a card now can't be 0
+- The level of a card now can't be 0 (*replaced 0 with 1*)
 - Now the used cards will be displayed (not just the water)
+- Now you can see your winned snow cards (*replaced 2 with 3*)
 
 ## [1.0.0-alpha.1] - 2021-03-15
