@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0-alpha.2] - 2021-03-16
 ### Added
 - If you have no cards, you lose
-- Now you can win the (whole) game
+- Now you can win, and lose the (whole) game
 ### Changed
 - If there is an if commands, now we specife every condition, also the last condition too (https://tknk.io/S1Pz)
 - Now the userChoice variable is `{"type": userT, "level": userL, "color": userC}`, and we use the variable, and not write that long string
