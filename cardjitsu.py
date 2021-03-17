@@ -23,13 +23,12 @@
 
 # * The basic idea is from Club Penguin!
 
-# ! .:FOR ME!:. DO NOT FORGET TO CREATE CHANGELOG!
-
-# TODO: NO: raise YES: handle
-# TODO: p1visual (rendesen jelenjenek meg a kártyák)
+# ! .:FOR ME!:. DO NOT FORGET TO CREATE CHANGELOG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 import random
-import time
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
 
 """
 ===HOW TO WIN===
@@ -40,6 +39,15 @@ import time
 
 
 def whoWins(p1card, p2card):
+    """Returns if the player1 wins or not
+
+    Args:
+        p1card (dict): Cards of player1
+        p2card (dict): Cards of player2
+
+    Returns:
+        bool: True: If player1 won  False: If player2 won  "DRAW": If it's a draw.
+    """
     if p1card["type"] == p2card["type"]:
         return "DRAW"
 
@@ -57,6 +65,14 @@ def whoWins(p1card, p2card):
 
 
 def isWin(cards):
+    """Checks if the user wins or not
+
+    Args:
+        cards (dict): The cards
+
+    Returns:
+        bool: True: The player won  False: The player doesn't won (BUT the players DOES NOT lose!)
+    """
     try:
         for i in range(0, 3):
             idkvar = cards[i][0]["color"]
@@ -73,6 +89,42 @@ def isWin(cards):
         return False
     except:
         notImportant = random.random()
+
+
+def frth(card):
+    """From Robot To Human. Colorizes the card
+
+    Args:
+        card (dict): One card
+
+    Returns:
+        str: The colorized card
+    """
+    if card["type"] == "W":
+        cType = "Water"
+    elif card["type"] == "F":
+        cType = "Fire"
+    elif card["type"] == "S":
+        cType = "Snow"
+    else:
+        print("[ERROR]")
+        print(
+            "[!!!] var: card[\"type\"] not W; F; S | card[\"type\"] = " + str(card["type"]))
+    if type(card["level"]) is int:
+        if card["color"] == "R":
+            return f"{Back.RED}" + cType + " " + str(card["level"])
+        elif card["color"] == "G":
+            return f"{Back.GREEN}" + cType + " " + str(card["level"])
+        elif card["color"] == "B":
+            return f"{Back.BLUE}" + cType + " " + str(card["level"])
+        else:
+            print("[ERROR]")
+            print(
+                "[!!!] var: card[\"color\"] is not R; G; B | card[\"color\"] = " + card["color"])
+    else:
+        print("[ERROR]")
+        print("[!!!] Type of card[\"level\"] is not int | Type = " +
+              str(type(card["level"])) + " | card[\"level\"] = " + str(card["level"]))
 
 
 if __name__ == '__main__':
@@ -134,27 +186,19 @@ if __name__ == '__main__':
                 elif i == 2:
                     word = "Snow"
                 else:
-                    print("[ERROR]")
-                    print("[!!!] var: i: not 0; 1; 2 | i = " + str(i))
-                    userTMP = input(
-                        "Write NC for normal continue (recommended), write CC for command continue, or write B for break (can break something!)>")
-                    if userTMP == "CC":
-                        continue
-                    elif userTMP == "B":
-                        print("[WARNING]")
-                        print("[!] This can break something!")
-                        break
-                    else:
-                        notImportant = random.random()
+                    print("\n\n\nYou losed the game.\n\n\n")
+                    inGame = False
+                    break
+
                 if len(p1score[i]) != 0:
                     if len(p1score[i]) == 1:
-                        print(word + " cards: " + str(p1score[i][0]))
+                        print(word + " card: " + frth(p1score[i][0]))
                     elif len(p1score[i]) == 2:
                         print(word + " cards: " +
-                              str(p1score[i][0]) + "; " + str(p1score[i][1]))
+                              frth(p1score[i][0]) + "; " + frth(p1score[i][1]))
                     elif len(p1score[i]) == 3:
-                        print(word + " cards: " + str(p1score[i][0]) + "; " + str(
-                            p1score[i][1]) + "; " + str(p1score[i][2]))
+                        print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
+                            p1score[i][1]) + "; " + frth(p1score[i][2]))
                     else:
                         print("[ERROR]")
                         print("[!!!] var: let(p1score[" + str(
@@ -170,27 +214,47 @@ if __name__ == '__main__':
                         else:
                             notImportant = random.random()
 
-            print("Your cards: " + str(p1cards))
-            userT = input("Write the type of your choiced card>").upper()
-            userL = int(input("Write the level of your choiced card>"))
-            userC = input("Write the color of your choiced card>").upper()
-            userChoice = {"type": userT, "level": userL, "color": userC}
+            print("Your cards:")
+            num = 0
+            for card in p1cards:
+                print(str(num) + ": " + frth(card))
+                num += 1
+
+            user = int(input("Write the number of your choiced card>"))
+            if user < 11 and user > -1:
+                notImportant = random.random()
+            else:
+                print("[ERROR]")
+                print(
+                    "[!!!] var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 | user = " + str(user))
+                userTMP = input(
+                    "Write NC for normal continue (NOT recommended), write CC for command continue (recommended), or write B for break (can break something! NOT recommended)>")
+                if userTMP == "CC":
+                    continue
+                elif userTMP == "B":
+                    print("[WARNING]")
+                    print("[!] This can break something!")
+                    break
+                else:
+                    notImportant = random.random()
+            userChoice = {
+                "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
             if userChoice in p1cards:
                 print("\n")
                 p1cards.remove(userChoice)
                 p2random = random.randrange(0, 9)
                 if whoWins(userChoice, p2cards[p2random]) == True:
                     print("WIN!")
-                    if userT == "W":
+                    if userChoice["type"] == "W":
                         p1score[0].append(userChoice)
-                    elif userT == "F":
+                    elif userChoice["type"] == "F":
                         p1score[1].append(userChoice)
-                    elif userT == "S":
+                    elif userChoice["type"] == "S":
                         p1score[2].append(userChoice)
                     else:
                         print("[ERROR]")
-                        raise RuntimeError(
-                            "var: userT not W; F; S | userT = " + str(userT))
+                        print(
+                            "var: userChoice[\"type\"] not W; F; S | userChoice[\"type\"] = " + str(userChoice["type"]))
                 elif whoWins(userChoice, p2cards[p2random]) == False:
                     print("Lose")
                     if p2cards[p2random]["type"] == "W":
@@ -200,16 +264,16 @@ if __name__ == '__main__':
                     elif p2cards[p2random]["type"] == "S":
                         p1score[2].append(p2cards[p2random])
                     else:
-                        raise RuntimeError(
-                            "var: p2cards[" + str(p2random) + "] not W; F; S | p2cards[" + str(p2random) + "] = " + str(p2cards[p2random]))
+                        print("var: p2cards[" + str(p2random) + "] not W; F; S | p2cards[" + str(
+                            p2random) + "] = " + str(p2cards[p2random]))
                 elif whoWins(userChoice, p2cards[p2random]) == "DRAW":
                     print("Draw")
                 else:
-                    raise RuntimeError(
-                        "func: whoWins RETURN not True; False; DRAW | RETURN = " + str(whoWins(userChoice, p2cards[p2random])))
+                    print("func: whoWins RETURN not True; False; DRAW | RETURN = " +
+                          str(whoWins(userChoice, p2cards[p2random])))
             else:
-                raise RuntimeError(
-                    "var: userChoice not in p1cards | userChoice = " + str(userChoice) + " | p1cards = " + str(p1cards))
+                print("var: userChoice not in p1cards | userChoice = " +
+                      str(userChoice) + " | p1cards = " + str(p1cards))
 
             if isWin(p1score) == True:
                 print("\n\n\nYOU WON THE GAME!!!\n\n\n")
