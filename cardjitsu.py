@@ -26,9 +26,6 @@
 # ! .:FOR ME!:. DO NOT FORGET TO CREATE CHANGELOG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 import random
-import colorama
-from colorama import Fore, Back, Style
-colorama.init(autoreset=True)
 
 """
 ===HOW TO WIN===
@@ -112,11 +109,11 @@ def frth(card):
             "[!!!] var: card[\"type\"] not W; F; S | card[\"type\"] = " + str(card["type"]))
     if type(card["level"]) is int:
         if card["color"] == "R":
-            return f"{Back.RED}" + cType + " " + str(card["level"])
+            return "RED " + cType + " " + str(card["level"])
         elif card["color"] == "G":
-            return f"{Back.GREEN}" + cType + " " + str(card["level"])
+            return "GREEN " + cType + " " + str(card["level"])
         elif card["color"] == "B":
-            return f"{Back.BLUE}" + cType + " " + str(card["level"])
+            return "BLUE " + cType + " " + str(card["level"])
         else:
             print("[ERROR]")
             print(
@@ -186,9 +183,8 @@ if __name__ == '__main__':
                 elif i == 2:
                     word = "Snow"
                 else:
-                    print("\n\n\nYou losed the game.\n\n\n")
-                    inGame = False
-                    break
+                    print("[ERROR]")
+                    print("[!!!] var: i not 0; 1; 2 | i = " + str(i))
 
                 if len(p1score[i]) != 0:
                     if len(p1score[i]) == 1:
@@ -200,19 +196,9 @@ if __name__ == '__main__':
                         print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                             p1score[i][1]) + "; " + frth(p1score[i][2]))
                     else:
-                        print("[ERROR]")
-                        print("[!!!] var: let(p1score[" + str(
-                            i) + "]) not 0; 1; 2; 3 | len(p1score[" + str(i) + "]) = " + str(len(p1score[i])))
-                        userTMP = input(
-                            "Write NC for normal continue (recommended), write CC for command continue, or write B for break (can break something!)>")
-                        if userTMP == "CC":
-                            continue
-                        elif userTMP == "B":
-                            print("[WARNING]")
-                            print("[!] This can break something!")
-                            break
-                        else:
-                            notImportant = random.random()
+                        print("\n\n\nYou losed the game.\n\n\n")
+                        inGame = False
+                        break
 
             print("Your cards:")
             num = 0
