@@ -9,7 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Now all functions have documentetion
 ### Changed
 - All cards are now colorized
-### Removed
 ### Fixed
 - Now there are no `raise RuntimeError`s!
 
