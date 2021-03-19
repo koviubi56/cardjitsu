@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0-beta.2] - 2021-03-19
+### Added
+- There are 2 settings you can set to `True` or `False` (you need to edit the file)
+  - With colors, without colors
+  - SPTGAL (Still play the game after loose)
+### Changed
+- The lose now in a function
+
 ## [1.0.0-beta.1] - 2021-03-17
 ### Added
 - Now all functions have documentetion
