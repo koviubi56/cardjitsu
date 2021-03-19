@@ -1,38 +1,16 @@
 # This Software is licensed under Mozilla Public License 2.0 ( https://spdx.org/licenses/MPL-2.0.html )
-
-"""
-************************************************************************
-*                                                                      *
-*  6. Disclaimer of Warranty                                           *
-*  -------------------------                                           *
-*                                                                      *
-*  Covered Software is provided under this License on an "as is"       *
-*  basis, without warranty of any kind, either expressed, implied, or  *
-*  statutory, including, without limitation, warranties that the       *
-*  Covered Software is free of defects, merchantable, fit for a        *
-*  particular purpose or non-infringing. The entire risk as to the     *
-*  quality and performance of the Covered Software is with You.        *
-*  Should any Covered Software prove defective in any respect, You     *
-*  (not any Contributor) assume the cost of any necessary servicing,   *
-*  repair, or correction. This disclaimer of warranty constitutes an   *
-*  essential part of this License. No use of any Covered Software is   *
-*  authorized under this License except under this disclaimer.         *
-*                                                                      *
-************************************************************************
-"""
-
-# * The basic idea is from Club Penguin!
-
-# ! .:FOR ME!:. DO NOT FORGET TO CREATE CHANGELOG!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
+from colorama import Back
+import colorama
 import random
+colorama.init(autoreset=True)
 
-"""
-===HOW TO WIN===
-1. You have the same card type (water, fire, snow), but three in different colors (Red, Green, Blue).
-2. You have NOT the same card type, but three in different colors, and types.
-3. If the 2nd player (in this case the robot) have more than 3 cards in the water, fire, or snow type.
-"""
+# ***************************************************************SETTINGS*********************************************************************
+# IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
+COLORS = True
+
+# If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
+SPTGAL = False
+# ********************************************************************************************************************************************
 
 
 def whoWins(p1card, p2card):
@@ -109,11 +87,20 @@ def frth(card):
             "[!!!] var: card[\"type\"] not W; F; S | card[\"type\"] = " + str(card["type"]))
     if type(card["level"]) is int:
         if card["color"] == "R":
-            return "RED " + cType + " " + str(card["level"])
+            if COLORS:
+                return f"{Back.RED}" + cType + " " + str(card["level"])
+            else:
+                return "RED " + cType + " " + str(card["level"])
         elif card["color"] == "G":
-            return "GREEN " + cType + " " + str(card["level"])
+            if COLORS:
+                return f"{Back.GREEN}" + cType + " " + str(card["level"])
+            else:
+                return "GREEN " + cType + " " + str(card["level"])
         elif card["color"] == "B":
-            return "BLUE " + cType + " " + str(card["level"])
+            if COLORS:
+                return f"{Back.BLUE}" + cType + " " + str(card["level"])
+            else:
+                return "BLUE " + cType + " " + str(card["level"])
         else:
             print("[ERROR]")
             print(
@@ -124,16 +111,23 @@ def frth(card):
               str(type(card["level"])) + " | card[\"level\"] = " + str(card["level"]))
 
 
-if __name__ == '__main__':
-    print("\nCovered Software is provided under this License on an \"as is\" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Covered Software is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the Covered Software is with You. Should any Covered Software prove defective in any respect, You(not any Contributor) assume the cost of any necessary servicing, repair, or correction. This disclaimer of warranty constitutes an essential part of this License. No use of any Covered Software is authorized under this License except under this disclaimer.\n")
-    while True:
-        inGame = True
-        p1cards = []
-        p1score = [[], [], []]
-
-        p2cards = []
-        p2score = [[], [], []]
-
+def lose():
+    inGame = False
+    p1cards = []
+    p1score = []
+    p2cards = []
+    p2score = []
+    notImportant = 0
+    num = 0
+    print("\n\nYou losed the game.\n\n")
+    if SPTGAL:
+        while len(p1cards) != 0:
+            for i in range(10):
+                p1cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
         for i in range(10):
             p1cards.append({
                 "type": random.choice(["W", "F", "S"]),
@@ -146,13 +140,44 @@ if __name__ == '__main__':
                 "level": random.randrange(1, 11),
                 "color": random.choice(["R", "G", "B"])
             })
+        notImportant = random.random() ** random.random() ** random.random()
+    else:
+        for notImportant in range(80):
+            print("LOSE")
+        raise RuntimeError(
+            "Sorry, but you can't play anymore! Please, close, and reopen this game!")
 
+
+if __name__ == '__main__':
+    print("\nCovered Software is provided under this License on an \"as is\" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Covered Software is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the Covered Software is with You. Should any Covered Software prove defective in any respect, You(not any Contributor) assume the cost of any necessary servicing, repair, or correction. This disclaimer of warranty constitutes an essential part of this License. No use of any Covered Software is authorized under this License except under this disclaimer.\n")
+    inGame = False
+    while True:
+        p1cards = []
+        p1score = [[], [], []]
+
+        p2cards = []
+        p2score = [[], [], []]
+
+        if inGame == False:
+            for i in range(10):
+                p1cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
+            for i in range(10):
+                p2cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
+
+        inGame = True
         while inGame == True:
             print("\n")
 
             if len(p1score) > 3:
-                print("\n\n\nYou losed the game.\n\n\n")
-                inGame = False
+                lose()
                 break
             if len(p2score) > 3:
                 print("\n\n\nYOU WON THE GAME!!!\n\n\n")
@@ -196,10 +221,8 @@ if __name__ == '__main__':
                         print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                             p1score[i][1]) + "; " + frth(p1score[i][2]))
                     else:
-                        print("\n\n\nYou losed the game.\n\n\n")
-                        inGame = False
+                        lose()
                         break
-
             print("Your cards:")
             num = 0
             for card in p1cards:
@@ -223,8 +246,12 @@ if __name__ == '__main__':
                     break
                 else:
                     notImportant = random.random()
-            userChoice = {
-                "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
+            try:
+                userChoice = {
+                    "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
+            except:
+                lose()
+                break
             if userChoice in p1cards:
                 print("\n")
                 p1cards.remove(userChoice)
@@ -266,6 +293,8 @@ if __name__ == '__main__':
                 inGame = False
                 break
             elif isWin(p2score) == True:
-                print("\n\n\nYou losed the game.\n\n\n")
-                inGame = False
+                lose()
                 break
+
+        inGame = False
+        continue
