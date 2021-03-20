@@ -1,7 +1,7 @@
 # cardjitsu
 A card game with python.
 
-To get started, [download the latest version](https://github.com/koviubi56/cardjitsu/releases), and run it!
+To get started, [download the latest version](https://github.com/koviubi56/cardjitsu/releases/latest), and run it!
 
 For help: [click here](https://github.com/koviubi56/cardjitsu/discussions/new)!
 
