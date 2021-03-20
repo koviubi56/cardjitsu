@@ -9,7 +9,7 @@ colorama.init(autoreset=True)
 COLORS = True
 
 # If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
-SPTGAL = True
+SPTGAL = False
 # ********************************************************************************************************************************************
 
 
