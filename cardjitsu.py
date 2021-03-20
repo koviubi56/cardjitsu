@@ -9,7 +9,7 @@ colorama.init(autoreset=True)
 COLORS = True
 
 # If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
-SPTGAL = False
+SPTGAL = True
 # ********************************************************************************************************************************************
 
 
@@ -121,19 +121,13 @@ def lose():
     num = 0
     print("\n\nYou losed the game.\n\n")
     if SPTGAL:
-        while len(p1cards) != 0:
+        while len(p1cards) == 0:
             for i in range(10):
                 p1cards.append({
                     "type": random.choice(["W", "F", "S"]),
                     "level": random.randrange(1, 11),
                     "color": random.choice(["R", "G", "B"])
                 })
-        for i in range(10):
-            p1cards.append({
-                "type": random.choice(["W", "F", "S"]),
-                "level": random.randrange(1, 11),
-                "color": random.choice(["R", "G", "B"])
-            })
         for i in range(10):
             p2cards.append({
                 "type": random.choice(["W", "F", "S"]),
@@ -211,6 +205,11 @@ if __name__ == '__main__':
                     print("[ERROR]")
                     print("[!!!] var: i not 0; 1; 2 | i = " + str(i))
 
+                for k in range(0, 3):
+                    if len(p1score[k]) > 3:
+                        lose()
+                        break
+
                 if len(p1score[i]) != 0:
                     if len(p1score[i]) == 1:
                         print(word + " card: " + frth(p1score[i][0]))
@@ -220,9 +219,6 @@ if __name__ == '__main__':
                     elif len(p1score[i]) == 3:
                         print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                             p1score[i][1]) + "; " + frth(p1score[i][2]))
-                    else:
-                        lose()
-                        break
             print("Your cards:")
             num = 0
             for card in p1cards:
