@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.0] - 2021-03-20
+### Added
+- Now you can play with, and without colors
+### Changed
+- Unnecessary import deleted
+### Fixed
+- If you lose, you don't get your winned cards
+
 ## [1.0.0-beta.2] - 2021-03-19
 ### Added
 - There are 2 settings you can set to `True` or `False` (you need to edit the file)
