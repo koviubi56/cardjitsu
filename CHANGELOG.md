@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - If you (or the robot) have 0 cards, you get more 10!
 - If you get an error, you can see what's wrong (the error, and (if there is a variable) the variable)
 ### Changed
-- If there is an if commands, now we specife every condition, also the last condition too (https://tknk.io/S1Pz)
+- If there is an if commands, now we specife every condition, also the last condition too (https://is.gd/k56_cardjitsu_1)
 - Now the userChoice variable is `{"type": userT, "level": userL, "color": userC}`, and we use the variable, and not write that long string
 - Now you have 10 cards
 ### Removed
