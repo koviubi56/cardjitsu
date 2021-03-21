@@ -6,7 +6,7 @@ You can give an idea, or report a bug.
 
 Before you do anything, read the wiki first, and then search opened and closed issues/pull requests, maybe they have the answare!
 
-Please, follow the [Code of conduct]([WRITE])!
+Please, follow the [Code of conduct](https://github.com/koviubi56/cardjitsu/blob/main/CODE_OF_CONDUCT.md)!
 
 # Contributing
 Please, follow these rules! If you doesn't follow these rules,
