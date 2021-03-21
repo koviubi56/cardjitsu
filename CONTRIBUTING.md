@@ -12,24 +12,21 @@ First things first, create an issue with the bug template. Change the title to t
 #### Write
 After you give it a title, write the issue. Write the bug, what is the expected behavior, and if you have comments, write it! For example:
 
-***
+```markdown
+# Bug report
 
-/ Bug report
+## The bug
 
-// The bug
+When I (do something), (the bug).
 
-When I * (do something), * (the bug).
+## Expected behavior
 
-// Expected behavior
+(Expected behavior)
 
-* (Expected behavior)
+## Comment
 
-// Comment
-
-* (Comment)
-*I write / instead of # *
-
-***
+(Comment)
+```
 
 Submit the issue, and done!
 ## Following rules
