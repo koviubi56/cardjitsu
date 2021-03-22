@@ -13,31 +13,6 @@ SPTGAL = False
 # ********************************************************************************************************************************************
 
 
-def giveNewCards(isPlayer2=True, isPlayer1=True):
-    if isPlayer1:
-        for i in range(10):
-            p1cards.append({
-                "type": random.choice(["W", "F", "S"]),
-                "level": random.randrange(1, 11),
-                "color": random.choice(["R", "G", "B"])
-            })
-    if isPlayer2:
-        for i in range(10):
-            p2cards.append({
-                "type": random.choice(["W", "F", "S"]),
-                "level": random.randrange(1, 11),
-                "color": random.choice(["R", "G", "B"])
-            })
-
-
-def error(errcode, varToShow=None, nameOfVar=None):
-    print("[ERROR]")
-    if varToShow == None:
-        print(errcode)
-    else:
-        print(errcode + " | " + nameOfVar + " = " + str(varToShow))
-
-
 def whoWins(p1card, p2card):
     """Returns if the player1 wins or not
 
@@ -57,6 +32,11 @@ def whoWins(p1card, p2card):
         return False
     elif p1card["level"] == p2card["level"]:
         return "DRAW"
+    else:
+        print("\n[ERROR]")
+        print("[!!!] The p1card[\"level\"] ( " + str(p1card["level"]) +
+              " ) is not relative to the p2card[\"level\"] ( " + str(p2card["level"]) + " )!")
+        input("To continue, press [ENTER]. . .")
 
 
 def isWin(cards):
@@ -102,8 +82,9 @@ def frth(card):
     elif card["type"] == "S":
         cType = "Snow"
     else:
-        error("var: card[\"type\"] not W; F; S",
-              card["type"], "card[\"type\"]")
+        print("[ERROR]")
+        print(
+            "[!!!] var: card[\"type\"] not W; F; S | card[\"type\"] = " + str(card["type"]))
     if type(card["level"]) is int:
         if card["color"] == "R":
             if COLORS:
@@ -121,11 +102,13 @@ def frth(card):
             else:
                 return "BLUE " + cType + " " + str(card["level"])
         else:
-            error("var: card[\"color\"] is not R; G; B",
-                  card["color"], "card[\"color\"]")
+            print("[ERROR]")
+            print(
+                "[!!!] var: card[\"color\"] is not R; G; B | card[\"color\"] = " + card["color"])
     else:
-        error("Type of card[\"level\"] is not int",
-              card["level"], "card[\"level\"]")
+        print("[ERROR]")
+        print("[!!!] Type of card[\"level\"] is not int | Type = " +
+              str(type(card["level"])) + " | card[\"level\"] = " + str(card["level"]))
 
 
 def lose():
@@ -138,7 +121,19 @@ def lose():
     num = 0
     print("\n\nYou losed the game.\n\n")
     if SPTGAL:
-        giveNewCards(False)
+        while len(p1cards) == 0:
+            for i in range(10):
+                p1cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
+        for i in range(10):
+            p2cards.append({
+                "type": random.choice(["W", "F", "S"]),
+                "level": random.randrange(1, 11),
+                "color": random.choice(["R", "G", "B"])
+            })
         notImportant = random.random() ** random.random() ** random.random()
     else:
         for notImportant in range(80):
@@ -158,7 +153,18 @@ if __name__ == '__main__':
         p2score = [[], [], []]
 
         if inGame == False:
-            giveNewCards()
+            for i in range(10):
+                p1cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
+            for i in range(10):
+                p2cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
 
         inGame = True
         while inGame == True:
@@ -173,10 +179,20 @@ if __name__ == '__main__':
                 break
 
             if len(p1cards) <= 0:
-                giveNewCards(False)
+                for i in range(10):
+                    p1cards.append({
+                        "type": random.choice(["W", "F", "S"]),
+                        "level": random.randrange(1, 11),
+                        "color": random.choice(["R", "G", "B"])
+                    })
 
             if len(p2cards) <= 0:
-                giveNewCards(True, False)
+                for i in range(10):
+                    p2cards.append({
+                        "type": random.choice(["W", "F", "S"]),
+                        "level": random.randrange(1, 11),
+                        "color": random.choice(["R", "G", "B"])
+                    })
 
             for i in range(0, 3):
                 if i == 0:
@@ -186,7 +202,8 @@ if __name__ == '__main__':
                 elif i == 2:
                     word = "Snow"
                 else:
-                    error("var: i not 0; 1; 2", i, "i")
+                    print("[ERROR]")
+                    print("[!!!] var: i not 0; 1; 2 | i = " + str(i))
 
                 for k in range(0, 3):
                     if len(p1score[k]) > 3:
@@ -208,14 +225,23 @@ if __name__ == '__main__':
                 print(str(num) + ": " + frth(card))
                 num += 1
 
-            try:
-                user = int(input("Write the number of your choiced card>"))
-            except:
-                continue
+            user = int(input("Write the number of your choiced card>"))
             if user < 11 and user > -1:
                 notImportant = random.random()
             else:
-                error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10", user, "user")
+                print("[ERROR]")
+                print(
+                    "[!!!] var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10 | user = " + str(user))
+                userTMP = input(
+                    "Write NC for normal continue (NOT recommended), write CC for command continue (recommended), or write B for break (can break something! NOT recommended)>")
+                if userTMP == "CC":
+                    continue
+                elif userTMP == "B":
+                    print("[WARNING]")
+                    print("[!] This can break something!")
+                    break
+                else:
+                    notImportant = random.random()
             try:
                 userChoice = {
                     "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
@@ -235,8 +261,9 @@ if __name__ == '__main__':
                     elif userChoice["type"] == "S":
                         p1score[2].append(userChoice)
                     else:
-                        error("var: userChoice[\"type\"] not W; F; S",
-                              userChoice["type"], "userChoice[\"type\"]")
+                        print("[ERROR]")
+                        print(
+                            "var: userChoice[\"type\"] not W; F; S | userChoice[\"type\"] = " + str(userChoice["type"]))
                 elif whoWins(userChoice, p2cards[p2random]) == False:
                     print("Lose")
                     if p2cards[p2random]["type"] == "W":
