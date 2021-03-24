@@ -1,6 +1,6 @@
 # cardjitsu
 
-[![GitHub](https://img.shields.io/github/license/koviubi56/cardjitsu)](https://github.com/koviubi56/cardjitsu/blob/main/LICENSE)
+[![MPL-2.0](https://img.shields.io/github/license/koviubi56/cardjitsu)](https://github.com/koviubi56/cardjitsu/blob/main/LICENSE)
 
 A card game with python.
 
