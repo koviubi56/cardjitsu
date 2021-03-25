@@ -6,7 +6,7 @@ colorama.init(autoreset=True)
 
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
-COLORS = True
+COLORS = False
 
 # If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
 SPTGAL = False
@@ -146,8 +146,8 @@ def frth(card):
                 return f"{Back.BLUE}" + cType + " " + str(card["level"])
 
             return "BLUE " + cType + " " + str(card["level"])
-        else:
-            error("var: card[\"color\"] is not R; G; B",
+
+        error("var: card[\"color\"] is not R; G; B",
                   card["color"], "card[\"color\"]")
     else:
         error("Type of card[\"level\"] is not int",
