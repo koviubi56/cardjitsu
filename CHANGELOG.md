@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.1] - 2021-03-25
+### Added
+- Now the functions have documention.
+### Fixed
+- Fixed the `Unnecessary "else" after "return"` issues ([#8](https://github.com/koviubi56/cardjitsu/issues/8) [#9](https://github.com/koviubi56/cardjitsu/issues/9))
+- Fixed the `Using type() instead of isinstance() for a typecheck.` issue ([#7](https://github.com/koviubi56/cardjitsu/issues/7)).
+
 ## [1.1.0] - 2021-03-22
 ### Changed
 - A lot of changed happend to make the code better (e.g. write code once)

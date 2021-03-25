@@ -6,7 +6,7 @@ colorama.init(autoreset=True)
 
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
-COLORS = True
+COLORS = False
 
 # If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
 SPTGAL = False
@@ -14,6 +14,12 @@ SPTGAL = False
 
 
 def giveNewCards(isPlayer2=True, isPlayer1=True):
+    """Gives new cards.
+
+    Args:
+        isPlayer2 (bool, optional): Player2 needs new cards? Defaults to True.
+        isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
+    """
     if isPlayer1:
         for i in range(10):
             p1cards.append({
@@ -31,6 +37,26 @@ def giveNewCards(isPlayer2=True, isPlayer1=True):
 
 
 def error(errcode, varToShow=None, nameOfVar=None):
+    """Just an error function.
+
+    Args:
+        errcode (str): The error code.
+        varToShow (var, optional): The variable to show. Defaults to None.
+        nameOfVar (str, optional): The name of var. Defaults to None.
+
+    Example:
+        [ERROR]
+        {errcode} | {nameOfVar} = {varToShow}
+
+        [ERROR]
+        {errcode}
+
+        [ERROR]
+        It's Friday | day = Friday
+
+        [ERROR]
+        You can't do that here and now!
+    """
     print("[ERROR]")
     if varToShow == None:
         print(errcode)
@@ -55,8 +81,8 @@ def whoWins(p1card, p2card):
         return True
     elif p1card["level"] < p2card["level"]:
         return False
-    elif p1card["level"] == p2card["level"]:
-        return "DRAW"
+
+    return "DRAW"
 
 
 def isWin(cards):
@@ -104,24 +130,24 @@ def frth(card):
     else:
         error("var: card[\"type\"] not W; F; S",
               card["type"], "card[\"type\"]")
-    if type(card["level"]) is int:
+    if isinstance(card["level"], int):
         if card["color"] == "R":
             if COLORS:
                 return f"{Back.RED}" + cType + " " + str(card["level"])
-            else:
-                return "RED " + cType + " " + str(card["level"])
+
+            return "RED " + cType + " " + str(card["level"])
         elif card["color"] == "G":
             if COLORS:
                 return f"{Back.GREEN}" + cType + " " + str(card["level"])
-            else:
-                return "GREEN " + cType + " " + str(card["level"])
+
+            return "GREEN " + cType + " " + str(card["level"])
         elif card["color"] == "B":
             if COLORS:
                 return f"{Back.BLUE}" + cType + " " + str(card["level"])
-            else:
-                return "BLUE " + cType + " " + str(card["level"])
-        else:
-            error("var: card[\"color\"] is not R; G; B",
+
+            return "BLUE " + cType + " " + str(card["level"])
+
+        error("var: card[\"color\"] is not R; G; B",
                   card["color"], "card[\"color\"]")
     else:
         error("Type of card[\"level\"] is not int",
@@ -129,6 +155,11 @@ def frth(card):
 
 
 def lose():
+    """Lose the game.
+
+    Raises:
+        RuntimeError: There is a bug, that even if you lose, you don't get new cards. If SPTGAL is not True, you get this error. </> I think(!) it's because global/local vars? </>
+    """
     inGame = False
     p1cards = []
     p1score = []
