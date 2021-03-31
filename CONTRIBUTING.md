@@ -26,11 +26,6 @@ If you are creating an issue, please, use the templates, and fill out them!
 
 An issue can be a feature request, or bug report! If you have a question, do not use an issue!
 
-If your issue is good, the issue is getting the `Work in progress` milestone!
-
-# Pull requests
-Please, don't use pull requests. It's allowed, but think it twice if you want it! You can use issues! If it's a grammer error, feature request, or just one-two line edit, please use an issue!
-
 # Checking
 We are checking issues, pull requests at weekends, but if we can, we check it on every day (~12:30-18:00 CET | ~11:30-17:00 UTC).
 
