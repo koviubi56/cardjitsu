@@ -3,7 +3,6 @@ from colorama import Back
 import colorama
 import random
 colorama.init(autoreset=True)
-
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = False
@@ -21,14 +20,14 @@ def giveNewCards(isPlayer2=True, isPlayer1=True):
         isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
     """
     if isPlayer1:
-        for i in range(10):
+        for notImportant in range(10):
             p1cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
                 "color": random.choice(["R", "G", "B"])
             })
     if isPlayer2:
-        for i in range(10):
+        for notImportant in range(10):
             p2cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
@@ -58,7 +57,7 @@ def error(errcode, varToShow=None, nameOfVar=None):
         You can't do that here and now!
     """
     print("[ERROR]")
-    if varToShow == None:
+    if varToShow is None:
         print(errcode)
     else:
         print(errcode + " | " + nameOfVar + " = " + str(varToShow))
@@ -130,7 +129,7 @@ def frth(card):
     else:
         error("var: card[\"type\"] not W; F; S",
               card["type"], "card[\"type\"]")
-    if isinstance(card["level"], int):
+    if isinstance(card["level"], int):  # isinstance(X, Y) = if type of X is Y, then :)
         if card["color"] == "R":
             if COLORS:
                 return f"{Back.RED}" + cType + " " + str(card["level"])
@@ -148,7 +147,7 @@ def frth(card):
             return "BLUE " + cType + " " + str(card["level"])
 
         error("var: card[\"color\"] is not R; G; B",
-                  card["color"], "card[\"color\"]")
+              card["color"], "card[\"color\"]")
     else:
         error("Type of card[\"level\"] is not int",
               card["level"], "card[\"level\"]")
@@ -188,11 +187,11 @@ if __name__ == '__main__':
         p2cards = []
         p2score = [[], [], []]
 
-        if inGame == False:
+        if inGame is False:
             giveNewCards()
 
         inGame = True
-        while inGame == True:
+        while inGame:
             print("\n")
 
             if len(p1score) > 3:
@@ -257,7 +256,7 @@ if __name__ == '__main__':
                 print("\n")
                 p1cards.remove(userChoice)
                 p2random = random.randrange(0, 9)
-                if whoWins(userChoice, p2cards[p2random]) == True:
+                if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
                     if userChoice["type"] == "W":
                         p1score[0].append(userChoice)
@@ -268,7 +267,7 @@ if __name__ == '__main__':
                     else:
                         error("var: userChoice[\"type\"] not W; F; S",
                               userChoice["type"], "userChoice[\"type\"]")
-                elif whoWins(userChoice, p2cards[p2random]) == False:
+                elif whoWins(userChoice, p2cards[p2random]) is False:
                     print("Lose")
                     if p2cards[p2random]["type"] == "W":
                         p2score[0].append(p2cards[p2random])
@@ -288,11 +287,11 @@ if __name__ == '__main__':
                 print("var: userChoice not in p1cards | userChoice = " +
                       str(userChoice) + " | p1cards = " + str(p1cards))
 
-            if isWin(p1score) == True:
+            if isWin(p1score):
                 print("\n\n\nYOU WON THE GAME!!!\n\n\n")
                 inGame = False
                 break
-            elif isWin(p2score) == True:
+            elif isWin(p2score):
                 lose()
                 break
 
