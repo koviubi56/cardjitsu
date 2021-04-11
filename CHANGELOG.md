@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.3] - 2021-04-11 
+### Added
+- There are now a lot of new comments
+### Removed
+- We removed an unnecessary `if` statement
+### Fixed
+- The `isWin`, and `line: 250` `try-except` now has an exception type
+- We found (and fixed) a lot of not `error()` error messages
+
 ## [1.1.2] - 2021-04-10
 ### Removed
 - Removed some unused variables (`i`s in for loops)

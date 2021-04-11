@@ -5,7 +5,7 @@ import random
 colorama.init(autoreset=True)
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
-COLORS = False
+COLORS = True
 
 # If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
 SPTGAL = False
@@ -93,7 +93,7 @@ def isWin(cards):
     Returns:
         bool: True: The player won  False: The player doesn't won (BUT the players DOES NOT lose!)
     """
-    try:
+    try:  # * This try-except is IMPORTANT!
         for i in range(0, 3):
             idkvar = cards[i][0]["color"]
             if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
@@ -107,7 +107,7 @@ def isWin(cards):
             return True
 
         return False
-    except:
+    except IndexError:
         notImportant = random.random()
 
 
@@ -181,19 +181,21 @@ if __name__ == '__main__':
     print("\nCovered Software is provided under this License on an \"as is\" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Covered Software is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the Covered Software is with You. Should any Covered Software prove defective in any respect, You(not any Contributor) assume the cost of any necessary servicing, repair, or correction. This disclaimer of warranty constitutes an essential part of this License. No use of any Covered Software is authorized under this License except under this disclaimer.\n")
     inGame = False
     while True:
+        # Reseting (or creating the variables for) cards
         p1cards = []
         p1score = [[], [], []]
 
         p2cards = []
         p2score = [[], [], []]
 
-        if inGame is False:
-            giveNewCards()
+        # Giving new cards
+        giveNewCards()
 
         inGame = True
         while inGame:
             print("\n")
 
+            # Test if the user (or the bot) won (Lenght of score > 3)
             if len(p1score) > 3:
                 lose()
                 break
@@ -202,12 +204,14 @@ if __name__ == '__main__':
                 inGame = False
                 break
 
+            # If the user (or the bot) has no cards, give them
             if len(p1cards) <= 0:
                 giveNewCards(False)
 
             if len(p2cards) <= 0:
                 giveNewCards(True, False)
 
+            # Showing score (winned cards)
             for i in range(0, 3):
                 if i == 0:
                     word = "Water"
@@ -232,29 +236,36 @@ if __name__ == '__main__':
                     elif len(p1score[i]) == 3:
                         print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                             p1score[i][1]) + "; " + frth(p1score[i][2]))
+
+            # Showing the cards (p1cards)
             print("Your cards:")
             num = 0
             for card in p1cards:
                 print(str(num) + ": " + frth(card))
                 num += 1
 
+            # Write the number of your choiced card
             try:
                 user = int(input("Write the number of your choiced card>"))
-            except:
+            except ValueError:
                 continue
+            # Tests the number is good (0-10)
             if user < 11 and user > -1:
                 notImportant = random.random()
             else:
                 error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10", user, "user")
-            try:
-                userChoice = {
-                    "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
-            except:
-                lose()
-                break
+# ! WARNING: By deleting the commented lines, the code can be unstable! This is under tests!
+# //            try:
+            userChoice = {
+                "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
+# //            except:
+# //                lose()
+# //            break
+            # Checks the userChoice is in p1cards (the user have that card?)
             if userChoice in p1cards:
                 print("\n")
                 p1cards.remove(userChoice)
+                # F i g h t
                 p2random = random.randrange(0, 9)
                 if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
@@ -281,12 +292,13 @@ if __name__ == '__main__':
                 elif whoWins(userChoice, p2cards[p2random]) == "DRAW":
                     print("Draw")
                 else:
-                    print("func: whoWins RETURN not True; False; DRAW | RETURN = " +
-                          str(whoWins(userChoice, p2cards[p2random])))
+                    error("func: whoWins RETURN not True; False; DRAW", str(
+                        whoWins(userChoice, p2cards[p2random])), "RETURN")
             else:
-                print("var: userChoice not in p1cards | userChoice = " +
-                      str(userChoice) + " | p1cards = " + str(p1cards))
+                error("var: userChoice not in p1cards", [
+                      userChoice, p1cards], "userChoice AND p1cards")
 
+            # Checks if the user is won the game
             if isWin(p1score):
                 print("\n\n\nYOU WON THE GAME!!!\n\n\n")
                 inGame = False
@@ -295,5 +307,6 @@ if __name__ == '__main__':
                 lose()
                 break
 
+            # Continue
+            continue
         inGame = False
-        continue
