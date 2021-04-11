@@ -93,20 +93,22 @@ def isWin(cards):
     Returns:
         bool: True: The player won  False: The player doesn't won (BUT the players DOES NOT lose!)
     """
-    for i in range(0, 3):
-        idkvar = cards[i][0]["color"]
-        if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
+    try:
+        for i in range(0, 3):
+            idkvar = cards[i][0]["color"]
+            if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
+                return True
+        idkvar = cards[0][0]["color"]
+        if idkvar != cards[1][0]["color"] and idkvar != cards[2][0]["color"] and cards[1][0]["color"] != cards[2][0]["color"]:
             return True
-    idkvar = cards[0][0]["color"]
-    if idkvar != cards[1][0]["color"] and idkvar != cards[2][0]["color"] and cards[1][0]["color"] != cards[2][0]["color"]:
-        return True
-    if idkvar != cards[1][1]["color"] and idkvar != cards[2][1]["color"] and cards[1][1]["color"] != cards[2][1]["color"]:
-        return True
-    if idkvar != cards[1][2]["color"] and idkvar != cards[2][2]["color"] and cards[1][2]["color"] != cards[2][2]["color"]:
-        return True
+        if idkvar != cards[1][1]["color"] and idkvar != cards[2][1]["color"] and cards[1][1]["color"] != cards[2][1]["color"]:
+            return True
+        if idkvar != cards[1][2]["color"] and idkvar != cards[2][2]["color"] and cards[1][2]["color"] != cards[2][2]["color"]:
+            return True
 
-    return False
-
+        return False
+    except:
+        notImportant = random.random()
 
 def frth(card):
     """From Robot To Human. Colorizes the card
