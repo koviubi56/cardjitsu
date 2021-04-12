@@ -11,7 +11,7 @@ notImportant = 1
 COLORS = True
 
 # (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues. (default: False)
-DEBUG = True
+DEBUG = False
 # *******************************************************************************************************************************************
 
 
@@ -183,6 +183,12 @@ def lose():
     giveNewCards()
 
 
+def testLose():
+    for j in range(3):  # j has no meanings. it's just j. why not?
+        if p1score[j] > 3:
+            lose()
+
+
 if __name__ == '__main__':
     print("\nCovered Software is provided under this License on an \"as is\" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Covered Software is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the Covered Software is with You. Should any Covered Software prove defective in any respect, You(not any Contributor) assume the cost of any necessary servicing, repair, or correction. This disclaimer of warranty constitutes an essential part of this License. No use of any Covered Software is authorized under this License except under this disclaimer.\n")
     inGame = False
@@ -209,6 +215,8 @@ if __name__ == '__main__':
 
             if len(p2cards) <= 0:
                 giveNewCards(True, False)
+
+            testLose()
 
             losed = False
             # Showing score (winned cards)
