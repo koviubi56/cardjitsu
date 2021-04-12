@@ -1,5 +1,4 @@
 # This Software is licensed under Mozilla Public License 2.0 ( https://spdx.org/licenses/MPL-2.0.html )
-# BUG: When lose the game, you see it 3 (or more/less) times
 # BUG: Before WIN/LOSE (I m p o r t a n t: with cards!!) test is lose! (p1score >)
 # TODO: If cards < 10: new card(s!!)
 from colorama import Back
@@ -9,7 +8,10 @@ colorama.init(autoreset=True)
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
-# ********************************************************************************************************************************************
+
+# (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues. (default: False)
+DEBUG = True
+# *******************************************************************************************************************************************
 
 
 def giveNewCards(isPlayer2=True, isPlayer1=True):
@@ -244,10 +246,13 @@ if __name__ == '__main__':
                 num += 1
 
             # Write the number of your choiced card
-            try:
-                user = int(input("Write the number of your choiced card>"))
-            except ValueError:
-                continue
+            if DEBUG is not True:
+                try:
+                    user = int(input("Write the number of your choiced card>"))
+                except ValueError:
+                    continue
+            elif DEBUG:
+                user = 0
             # Tests the number is good (0-9)
             if user < 10 and user > -1:
                 notImportant = random.random()
