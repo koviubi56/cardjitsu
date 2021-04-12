@@ -244,13 +244,8 @@ if __name__ == '__main__':
                 notImportant = random.random()
             else:
                 error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10", user, "user")
-# ! WARNING: By deleting the commented lines, the code can be unstable! This is under tests!
-# //            try:
             userChoice = {
                 "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
-# //            except:
-# //                lose()
-# //            break
             # Checks the userChoice is in p1cards (the user have that card?)
             if userChoice in p1cards:
                 print("\n")
