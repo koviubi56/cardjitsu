@@ -6,9 +6,6 @@ colorama.init(autoreset=True)
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
-
-# If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
-SPTGAL = True
 # ********************************************************************************************************************************************
 
 inGame = False
