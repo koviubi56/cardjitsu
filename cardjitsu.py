@@ -256,7 +256,7 @@ if __name__ == '__main__':
                     continue
             elif DEBUG:
                 user = 0
-                notImportant = notImportant ** notImportant
+                notImportant += 1
             # Tests the number is good (0-9)
             if user < 10 and user > -1:
                 notImportant += 1
