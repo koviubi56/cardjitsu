@@ -180,13 +180,7 @@ def lose():
     p2score = []
     num = 0
     print("\n\nYou losed the game.\n\n")
-# //    if SPTGAL:
-# //        giveNewCards(False)
-# //        notImportant = random.random() ** random.random() ** random.random()
-# //    else:
-# //        for notImportant in range(80):
-# //            print("LOSE")
-# //        raise RuntimeError("Sorry, but you can't play anymore! Please, close, and reopen this game!")
+    giveNewCards(False)
 
 
 if __name__ == '__main__':
