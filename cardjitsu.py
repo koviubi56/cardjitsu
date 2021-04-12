@@ -180,7 +180,7 @@ def lose():
     p2score = []
     num = 0
     print("\n\nYou losed the game.\n\n")
-    giveNewCards(False)
+    giveNewCards()
 
 
 if __name__ == '__main__':
