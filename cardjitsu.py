@@ -251,7 +251,7 @@ if __name__ == '__main__':
                 print("\n")
                 p1cards.remove(userChoice)
                 # F i g h t
-                p2random = random.randrange(0, len(p2cards) + 1)
+                p2random = random.randrange(0, len(p2cards))
                 if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
                     if userChoice["type"] == "W":
