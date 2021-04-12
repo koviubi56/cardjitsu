@@ -5,6 +5,7 @@ from colorama import Back
 import colorama
 import random
 colorama.init(autoreset=True)
+notImportant = 2
 # ***************************************************************SETTINGS*********************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
@@ -110,7 +111,7 @@ def isWin(cards):
 
         return False
     except IndexError:
-        notImportant = random.random()
+        notImportant += 1
 
 
 def frth(card):
@@ -183,6 +184,7 @@ def lose():
 if __name__ == '__main__':
     print("\nCovered Software is provided under this License on an \"as is\" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Covered Software is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the Covered Software is with You. Should any Covered Software prove defective in any respect, You(not any Contributor) assume the cost of any necessary servicing, repair, or correction. This disclaimer of warranty constitutes an essential part of this License. No use of any Covered Software is authorized under this License except under this disclaimer.\n")
     inGame = False
+    notImportant = 2
     while True:
         # Reseting (or creating the variables for) cards
         p1cards = []
@@ -253,9 +255,10 @@ if __name__ == '__main__':
                     continue
             elif DEBUG:
                 user = 0
+                notImportant = notImportant ** notImportant
             # Tests the number is good (0-9)
             if user < 10 and user > -1:
-                notImportant = random.random()
+                notImportant += 1
             else:
                 error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9", user, "user")
             userChoice = {
