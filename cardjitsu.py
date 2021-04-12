@@ -6,13 +6,13 @@ import colorama
 import random
 colorama.init(autoreset=True)
 notImportant = 1
-# ***************************************************************SETTINGS*********************************************************************
+# ***************************************************************SETTINGS****************************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
 
-# (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues. (default: False)
-DEBUG = False
-# *******************************************************************************************************************************************
+# (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues. (default: False) (False/True/"TrueWithPause")
+DEBUG = "TrueWithPause"
+# ***************************************************************************************************************************************************
 
 
 def giveNewCards(isPlayer2=True, isPlayer1=True):
@@ -204,6 +204,10 @@ if __name__ == '__main__':
 
         # Giving new cards
         giveNewCards()
+
+        # Debug mode pause
+        if DEBUG == "TrueWithPause":
+            input("debug: press [ENTER]. . .")
 
         inGame = True
         while inGame:
