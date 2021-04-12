@@ -225,11 +225,11 @@ if __name__ == '__main__':
                 else:
                     error("var: i not 0; 1; 2", i, "i")
 
-                for k in range(0, 3):
-                    if len(p1score[k]) > 3:
-                        lose()
-
                 try:  # * This try-except is IMPORTANT!
+                    for k in range(0, 3):
+                        if len(p1score[k]) > 3:
+                            lose()
+
                     if len(p1score[i]) != 0:
                         if len(p1score[i]) == 1:
                             print(word + " card: " + frth(p1score[i][0]))
