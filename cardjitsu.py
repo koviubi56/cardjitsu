@@ -207,15 +207,6 @@ if __name__ == '__main__':
         while inGame:
             print("\n")
 
-            # Test if the user (or the bot) won (Lenght of score > 3)
-            if len(p1score) > 3:
-                lose()
-                break
-            if len(p2score) > 3:
-                print("\n\n\nYOU WON THE GAME!!!\n\n\n")
-                inGame = False
-                break
-
             # If the user (or the bot) has no cards, give them
             if len(p1cards) <= 0:
                 giveNewCards(False)
@@ -237,17 +228,21 @@ if __name__ == '__main__':
                 for k in range(0, 3):
                     if len(p1score[k]) > 3:
                         lose()
-                        break
 
-                if len(p1score[i]) != 0:
-                    if len(p1score[i]) == 1:
-                        print(word + " card: " + frth(p1score[i][0]))
-                    elif len(p1score[i]) == 2:
-                        print(word + " cards: " +
-                              frth(p1score[i][0]) + "; " + frth(p1score[i][1]))
-                    elif len(p1score[i]) == 3:
-                        print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
-                            p1score[i][1]) + "; " + frth(p1score[i][2]))
+                try:  # * This try-except is IMPORTANT!
+                    if len(p1score[i]) != 0:
+                        if len(p1score[i]) == 1:
+                            print(word + " card: " + frth(p1score[i][0]))
+                        elif len(p1score[i]) == 2:
+                            print(word + " cards: " +
+                                  frth(p1score[i][0]) + "; " + frth(p1score[i][1]))
+                        elif len(p1score[i]) == 3:
+                            print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
+                                p1score[i][1]) + "; " + frth(p1score[i][2]))
+                        elif len(p1score[i]) > 3:
+                            lose()
+                except IndexError:
+                    lose()
 
             # Showing the cards (p1cards)
             print("Your cards:")
