@@ -111,6 +111,7 @@ def isWin(cards):
 
         return False
     except IndexError:
+        global notImportant
         notImportant += 1
 
 
