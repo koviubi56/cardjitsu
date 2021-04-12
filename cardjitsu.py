@@ -1,5 +1,6 @@
 # This Software is licensed under Mozilla Public License 2.0 ( https://spdx.org/licenses/MPL-2.0.html )
 # BUG: When lose the game, you see it 3 (or more/less) times
+# BUG: Before WIN/LOSE (I m p o r t a n t: with cards!!) test is lose! (p1score >)
 # TODO: If cards < 10: new card(s!!)
 from colorama import Back
 import colorama
@@ -167,9 +168,9 @@ def lose():
     global losed
     inGame = False
     p1cards = []
-    p1score = []
+    p1score = [[], [], []]
     p2cards = []
-    p2score = []
+    p2score = [[], [], []]
     num = 0
     if losed is False:
         print("\n\nYou losed the game.\n\n")
