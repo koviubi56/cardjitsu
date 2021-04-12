@@ -8,7 +8,7 @@ colorama.init(autoreset=True)
 COLORS = True
 
 # If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
-SPTGAL = False
+SPTGAL = True
 # ********************************************************************************************************************************************
 
 
@@ -167,14 +167,13 @@ def lose():
     notImportant = 0
     num = 0
     print("\n\nYou losed the game.\n\n")
-    if SPTGAL:
-        giveNewCards(False)
-        notImportant = random.random() ** random.random() ** random.random()
-    else:
-        for notImportant in range(80):
-            print("LOSE")
-        raise RuntimeError(
-            "Sorry, but you can't play anymore! Please, close, and reopen this game!")
+# //    if SPTGAL:
+# //        giveNewCards(False)
+# //        notImportant = random.random() ** random.random() ** random.random()
+# //    else:
+# //        for notImportant in range(80):
+# //            print("LOSE")
+# //        raise RuntimeError("Sorry, but you can't play anymore! Please, close, and reopen this game!")
 
 
 if __name__ == '__main__':
