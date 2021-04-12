@@ -185,7 +185,7 @@ def lose():
 
 def testLose():
     for j in range(3):  # j has no meanings. it's just j. why not?
-        if p1score[j] > 3:
+        if len(p1score[j]) > 3:
             lose()
 
 
