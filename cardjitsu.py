@@ -239,11 +239,11 @@ if __name__ == '__main__':
                 user = int(input("Write the number of your choiced card>"))
             except ValueError:
                 continue
-            # Tests the number is good (0-10)
-            if user < 11 and user > -1:
+            # Tests the number is good (0-9)
+            if user < 10 and user > -1:
                 notImportant = random.random()
             else:
-                error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10", user, "user")
+                error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9", user, "user")
             userChoice = {
                 "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
             # Checks the userChoice is in p1cards (the user have that card?)
@@ -251,7 +251,7 @@ if __name__ == '__main__':
                 print("\n")
                 p1cards.remove(userChoice)
                 # F i g h t
-                p2random = random.randrange(0, 9)
+                p2random = random.randrange(0, len(p2cards) + 1)
                 if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
                     if userChoice["type"] == "W":
