@@ -317,6 +317,8 @@ if __name__ == '__main__':
                 error("var: userChoice not in p1cards", [
                       userChoice, p1cards], "userChoice AND p1cards")
 
+            testLose()
+
             # Checks if the user is won the game
             if isWin(p1score):
                 print("\n\n\nYOU WON THE GAME!!!\n\n\n")
