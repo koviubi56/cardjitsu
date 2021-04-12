@@ -8,14 +8,6 @@ colorama.init(autoreset=True)
 COLORS = True
 # ********************************************************************************************************************************************
 
-inGame = False
-p1cards = []
-p1score = []
-p2cards = []
-p2score = []
-notImportant = 0
-num = 0
-
 
 def giveNewCards(isPlayer2=True, isPlayer1=True):
     """Gives new cards.
