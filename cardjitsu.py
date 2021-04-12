@@ -19,6 +19,7 @@ p2score = []
 notImportant = 0
 num = 0
 
+
 def giveNewCards(isPlayer2=True, isPlayer1=True):
     """Gives new cards.
 
@@ -166,12 +167,17 @@ def lose():
     Raises:
         RuntimeError: There is a bug, that even if you lose, you don't get new cards. If SPTGAL is not True, you get this error. </> I think(!) it's because global/local vars? </>
     """
+    global inGame
+    global p1cards
+    global p1score
+    global p2cards
+    global p2score
+    global num
     inGame = False
     p1cards = []
     p1score = []
     p2cards = []
     p2score = []
-    notImportant = 0
     num = 0
     print("\n\nYou losed the game.\n\n")
 # //    if SPTGAL:
