@@ -32,7 +32,7 @@ ITALT10CGAC = True
 # *************************************************************************************************************************************************************
 
 
-def giveNewCards(isPlayer2=True, isPlayer1=True):
+def giveNewCards(isPlayer2=True, isPlayer1=True, howMany=10):
     """Gives new cards.
 
     Args:
@@ -40,14 +40,14 @@ def giveNewCards(isPlayer2=True, isPlayer1=True):
         isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
     """
     if isPlayer1:
-        for notImportant in range(10):
+        for notImportant in range(howMany):
             p1cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
                 "color": random.choice(["R", "G", "B"])
             })
     if isPlayer2:
-        for notImportant in range(10):
+        for notImportant in range(howMany):
             p2cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
@@ -241,11 +241,18 @@ if __name__ == '__main__':
             print("\n")
 
             # If the user (or the bot) has no cards, give them
-            if len(p1cards) <= 0:
-                giveNewCards(False)
+            if ITALT10CGAC is not True:
+                if len(p1cards) <= 0:
+                    giveNewCards(False)
 
-            if len(p2cards) <= 0:
-                giveNewCards(True, False)
+                if len(p2cards) <= 0:
+                    giveNewCards(True, False)
+            else:
+                while len(p1cards) < 10:
+                    giveNewCards(False, True, 1)
+
+                while len(p2cards) < 10:
+                    giveNewCards(True, False, 1)
 
             losed = False
             # Showing score (winned cards)
@@ -306,8 +313,12 @@ if __name__ == '__main__':
             if userChoice in p1cards:
                 print("\n")
                 p1cards.remove(userChoice)
+                if ITALT10CGAC:
+                    while len(p1cards) < 10:
+                        giveNewCards(False, True, 1)
                 # F i g h t
                 p2random = random.randrange(0, len(p2cards))
+                p2cards.remove(p2cards[p2random])
                 if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
                     if userChoice["type"] == "W":
