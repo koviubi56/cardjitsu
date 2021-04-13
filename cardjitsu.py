@@ -190,9 +190,9 @@ def lose(reason="ERROR! NO REASON PROVIDED!"):
     p2cards = []
     p2score = [[], [], []]
     if reason == "tooManyCards":
-        return "tooManyCards"
+        pass
     elif reason == "player2":
-        return "player2"
+        pass
     if losed is False:
         print("\n\nYou losed the game.\n\n")
         losed = True
