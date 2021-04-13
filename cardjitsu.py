@@ -9,7 +9,6 @@ p2score
 losed
 """
 # This Software is licensed under Mozilla Public License 2.0 ( https://spdx.org/licenses/MPL-2.0.html )
-# TODO: If cards < 10: new card(s!!)
 from colorama import Back
 import colorama
 import random
