@@ -336,8 +336,7 @@ if __name__ == '__main__':
 
             # Checks if the user is won the game
             if isWin(p1score):
-                print("\n\n\nYOU WON THE GAME!!!\n\n\n")
-                inGame = False
+                win()
                 break
             elif isWin(p2score):
                 lose()
