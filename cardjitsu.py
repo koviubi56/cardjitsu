@@ -183,6 +183,7 @@ def lose():
     global p1score
     global p2cards
     global p2score
+    global losed
     inGame = False
     p1cards = []
     p1score = [[], [], []]
