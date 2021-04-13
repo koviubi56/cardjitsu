@@ -177,16 +177,12 @@ def frth(card):
 
 def lose():
     """Lose the game.
-
-    Raises:
-        RuntimeError: There is a bug, that even if you lose, you don't get new cards. If SPTGAL is not True, you get this error. </> I think(!) it's because global/local vars? </>
     """
     global inGame
     global p1cards
     global p1score
     global p2cards
     global p2score
-    global losed
     inGame = False
     p1cards = []
     p1score = [[], [], []]
@@ -196,6 +192,13 @@ def lose():
         print("\n\nYou losed the game.\n\n")
         losed = True
     giveNewCards()
+
+
+def win():
+    """Win the game
+    """
+    print("\n\n\nYOU WON THE GAME!!!\n\n\n")
+    inGame = False
 
 
 def testLose():
