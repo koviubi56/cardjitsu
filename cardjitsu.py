@@ -15,7 +15,7 @@ import colorama
 import random
 colorama.init(autoreset=True)
 notImportant = 1
-# ***************************************************************SETTINGS********************************************************************
+# ***************************************************************SETTINGS**************************************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
 
@@ -23,13 +23,13 @@ COLORS = True
 DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
     "auto": True,
-    # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue
-    "pause": True
+    # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue  If "when100": every 100th time
+    "pause": "when100"
 }
 
 # If there are less than 10 cards, you get one (or more). (If There Are Less Than 10 Cards, Give A Card) (default: True)
 ITALT10CGAC = True
-# *******************************************************************************************************************************************
+# *************************************************************************************************************************************************************
 
 
 def giveNewCards(isPlayer2=True, isPlayer1=True):
@@ -225,8 +225,16 @@ if __name__ == '__main__':
         giveNewCards()
 
         # Debug mode pause
-        if DEBUG["pause"]:
+        if DEBUG["pause"] is True:
             input("debug: press [ENTER]. . .")
+        elif DEBUG["pause"] == "when100":
+            try:
+                debugNum += 1
+            except NameError:
+                debugNum = 1
+            if debugNum >= 100:
+                debugNum = 0
+                input("debug100: press [ENTER]. . .")
 
         inGame = True
         while inGame:
