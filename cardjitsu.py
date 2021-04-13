@@ -247,8 +247,6 @@ if __name__ == '__main__':
             if len(p2cards) <= 0:
                 giveNewCards(True, False)
 
-            # //testLose()
-
             losed = False
             # Showing score (winned cards)
             for i in range(0, 3):
