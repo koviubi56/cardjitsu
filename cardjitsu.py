@@ -1,3 +1,13 @@
+"""
+⚠️ WARNING ⚠️ This project is using the global keyword! Please, don't use these variables!
+List of variables:
+inGame
+p1cards
+p1score
+p2cards
+p2score
+losed
+"""
 # This Software is licensed under Mozilla Public License 2.0 ( https://spdx.org/licenses/MPL-2.0.html )
 # TODO: If cards < 10: new card(s!!)
 from colorama import Back
@@ -12,10 +22,13 @@ COLORS = True
 # (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues.
 DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
-    "auto": True,
+    "auto": False,
     # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue
-    "pause": True
+    "pause": False
 }
+
+# If there are less than 10 cards, you get one (or more). (If There Are Less Than 10 Cards, Give A Card) (default: True)
+ITALT10CGAC = True
 # *******************************************************************************************************************************************
 
 
@@ -173,14 +186,12 @@ def lose():
     global p1score
     global p2cards
     global p2score
-    global num
     global losed
     inGame = False
     p1cards = []
     p1score = [[], [], []]
     p2cards = []
     p2score = [[], [], []]
-    num = 0
     if losed is False:
         print("\n\nYou losed the game.\n\n")
         losed = True
@@ -263,6 +274,7 @@ if __name__ == '__main__':
             for card in p1cards:
                 print(str(num) + ": " + frth(card))
                 num += 1
+            num = None
 
             # Write the number of your choiced card
             if DEBUG["auto"] is not True:
