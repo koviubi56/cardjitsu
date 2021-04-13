@@ -21,7 +21,7 @@ COLORS = True
 # (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues.
 DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
-    "auto": True,
+    "auto": False,
     # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue  If "when100": every 100th time
     "pause": False
 }
@@ -128,8 +128,6 @@ def isWin(cards):
         return False
     except IndexError:
         pass
-        # //global notImportant
-        # //notImportant += 1
 
 
 def frth(card):
@@ -303,7 +301,6 @@ if __name__ == '__main__':
             # Tests the number is good (0-9)
             if user < 10 and user > -1:
                 pass
-                # //notImportant += 1
             else:
                 error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9", user, "user")
             userChoice = {
