@@ -24,7 +24,7 @@ DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
     "auto": True,
     # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue  If "when100": every 100th time
-    "pause": "when100"
+    "pause": True
 }
 
 # If there are less than 10 cards, you get one (or more). (If There Are Less Than 10 Cards, Give A Card) (default: True)
@@ -175,7 +175,7 @@ def frth(card):
               card["level"], "card[\"level\"]")
 
 
-def lose():
+def lose(reason="ERROR! NO REASON PROVIDED!"):
     """Lose the game.
     """
     global inGame
@@ -189,6 +189,10 @@ def lose():
     p1score = [[], [], []]
     p2cards = []
     p2score = [[], [], []]
+    if reason == "tooManyCards":
+        pass
+    elif reason == "player2":
+        pass
     if losed is False:
         print("\n\nYou losed the game.\n\n")
         losed = True
@@ -205,7 +209,7 @@ def win():
 def testLose():
     for j in range(3):  # j has no meanings. it's just j. why not?
         if len(p1score[j]) > 3:
-            lose()
+            lose("tooManyCards")
 
 
 if __name__ == '__main__':
@@ -247,7 +251,7 @@ if __name__ == '__main__':
             if len(p2cards) <= 0:
                 giveNewCards(True, False)
 
-            testLose()
+            # //testLose()
 
             losed = False
             # Showing score (winned cards)
@@ -264,7 +268,7 @@ if __name__ == '__main__':
                 try:  # * This try-except is IMPORTANT!
                     for k in range(0, 3):
                         if len(p1score[k]) > 3:
-                            lose()
+                            lose("tooManyCards")
 
                     if len(p1score[i]) != 0:
                         if len(p1score[i]) == 1:
@@ -276,9 +280,9 @@ if __name__ == '__main__':
                             print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                                 p1score[i][1]) + "; " + frth(p1score[i][2]))
                         elif len(p1score[i]) > 3:
-                            lose()
+                            lose("tooManyCards")
                 except IndexError:
-                    lose()
+                    lose("tooManyCards")
 
             # Showing the cards (p1cards)
             print("Your cards:")
@@ -348,7 +352,7 @@ if __name__ == '__main__':
                 win()
                 break
             elif isWin(p2score):
-                lose()
+                lose("player2")
                 break
 
             # Continue
