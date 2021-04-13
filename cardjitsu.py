@@ -22,9 +22,9 @@ COLORS = True
 # (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues.
 DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
-    "auto": False,
+    "auto": True,
     # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue
-    "pause": False
+    "pause": True
 }
 
 # If there are less than 10 cards, you get one (or more). (If There Are Less Than 10 Cards, Give A Card) (default: True)
