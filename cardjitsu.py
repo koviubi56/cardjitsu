@@ -1,26 +1,37 @@
+"""
+⚠️ WARNING ⚠️ This project is using the global keyword! Please, don't use these variables!
+List of variables:
+inGame
+p1cards
+p1score
+p2cards
+p2score
+losed
+"""
 # This Software is licensed under Mozilla Public License 2.0 ( https://spdx.org/licenses/MPL-2.0.html )
 from colorama import Back
 import colorama
 import random
 colorama.init(autoreset=True)
-# ***************************************************************SETTINGS*********************************************************************
+notImportant = 1
+# ***************************************************************SETTINGS**************************************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
 
-# If you lose, do you want to still play the game? (default & recommended: False) (Still Play The Game After Lose)
-SPTGAL = True
-# ********************************************************************************************************************************************
+# (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues.
+DEBUG = {
+    # If True: the program is automaticly selecting the 0 card  False: you can select a card
+    "auto": False,
+    # If True: when you are at a new game (after losing, winning and before the first game) you need to press enter to continue  If "when100": every 100th time
+    "pause": False
+}
 
-inGame = False
-p1cards = []
-p1score = []
-p2cards = []
-p2score = []
-notImportant = 0
-num = 0
+# If there are less than 10 cards, you get one (or more). (If There Are Less Than 10 Cards, Give A Card) (default: True)
+ITALT10CGAC = True
+# *************************************************************************************************************************************************************
 
 
-def giveNewCards(isPlayer2=True, isPlayer1=True):
+def giveNewCards(isPlayer2=True, isPlayer1=True, howMany=10):
     """Gives new cards.
 
     Args:
@@ -28,14 +39,14 @@ def giveNewCards(isPlayer2=True, isPlayer1=True):
         isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
     """
     if isPlayer1:
-        for notImportant in range(10):
+        for notImportant in range(howMany):
             p1cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
                 "color": random.choice(["R", "G", "B"])
             })
     if isPlayer2:
-        for notImportant in range(10):
+        for notImportant in range(howMany):
             p2cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
@@ -116,7 +127,7 @@ def isWin(cards):
 
         return False
     except IndexError:
-        notImportant = random.random()
+        pass
 
 
 def frth(card):
@@ -161,26 +172,37 @@ def frth(card):
               card["level"], "card[\"level\"]")
 
 
-def lose():
+def lose(reason="ERROR! NO REASON PROVIDED!"):
     """Lose the game.
-
-    Raises:
-        RuntimeError: There is a bug, that even if you lose, you don't get new cards. If SPTGAL is not True, you get this error. </> I think(!) it's because global/local vars? </>
     """
     global inGame
     global p1cards
     global p1score
     global p2cards
     global p2score
-    global num
+    global losed
     inGame = False
     p1cards = []
-    p1score = []
+    p1score = [[], [], []]
     p2cards = []
-    p2score = []
-    num = 0
-    print("\n\nYou losed the game.\n\n")
+    p2score = [[], [], []]
+    if losed is False:
+        print("\n\nYou losed the game.\n\n")
+        losed = True
     giveNewCards()
+
+
+def win():
+    """Win the game
+    """
+    print("\n\n\nYOU WON THE GAME!!!\n\n\n")
+    inGame = False
+
+
+def testLose():
+    for j in range(3):  # j has no meanings. it's just j. why not?
+        if len(p1score[j]) > 3:
+            lose("tooManyCards")
 
 
 if __name__ == '__main__':
@@ -194,20 +216,42 @@ if __name__ == '__main__':
         p2cards = []
         p2score = [[], [], []]
 
+        losed = False
+
         # Giving new cards
         giveNewCards()
+
+        # Debug mode pause
+        if DEBUG["pause"] is True:
+            input("debug: press [ENTER]. . .")
+        elif DEBUG["pause"] == "when100":
+            try:
+                debugNum += 1
+            except NameError:
+                debugNum = 1
+            if debugNum >= 100:
+                debugNum = 0
+                input("debug100: press [ENTER]. . .")
 
         inGame = True
         while inGame:
             print("\n")
 
             # If the user (or the bot) has no cards, give them
-            if len(p1cards) <= 0:
-                giveNewCards(False)
+            if ITALT10CGAC is not True:
+                if len(p1cards) <= 0:
+                    giveNewCards(False)
 
-            if len(p2cards) <= 0:
-                giveNewCards(True, False)
+                if len(p2cards) <= 0:
+                    giveNewCards(True, False)
+            else:
+                while len(p1cards) < 10:
+                    giveNewCards(False, True, 1)
 
+                while len(p2cards) < 10:
+                    giveNewCards(True, False, 1)
+
+            losed = False
             # Showing score (winned cards)
             for i in range(0, 3):
                 if i == 0:
@@ -222,7 +266,7 @@ if __name__ == '__main__':
                 try:  # * This try-except is IMPORTANT!
                     for k in range(0, 3):
                         if len(p1score[k]) > 3:
-                            lose()
+                            lose("tooManyCards")
 
                     if len(p1score[i]) != 0:
                         if len(p1score[i]) == 1:
@@ -234,9 +278,9 @@ if __name__ == '__main__':
                             print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                                 p1score[i][1]) + "; " + frth(p1score[i][2]))
                         elif len(p1score[i]) > 3:
-                            lose()
+                            lose("tooManyCards")
                 except IndexError:
-                    lose()
+                    lose("tooManyCards")
 
             # Showing the cards (p1cards)
             print("Your cards:")
@@ -244,30 +288,32 @@ if __name__ == '__main__':
             for card in p1cards:
                 print(str(num) + ": " + frth(card))
                 num += 1
+            num = None
 
             # Write the number of your choiced card
-            try:
-                user = int(input("Write the number of your choiced card>"))
-            except ValueError:
-                continue
-            # Tests the number is good (0-10)
-            if user < 11 and user > -1:
-                notImportant = random.random()
+            if DEBUG["auto"] is not True:
+                try:
+                    user = int(input("Write the number of your choiced card>"))
+                except ValueError:
+                    continue
+            elif DEBUG["auto"]:
+                user = 0
+            # Tests the number is good (0-9)
+            if user < 10 and user > -1:
+                pass
             else:
-                error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9; 10", user, "user")
-# ! WARNING: By deleting the commented lines, the code can be unstable! This is under tests!
-# //            try:
+                error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9", user, "user")
             userChoice = {
                 "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
-# //            except:
-# //                lose()
-# //            break
             # Checks the userChoice is in p1cards (the user have that card?)
             if userChoice in p1cards:
                 print("\n")
                 p1cards.remove(userChoice)
+                if ITALT10CGAC:
+                    while len(p1cards) < 10:
+                        giveNewCards(False, True, 1)
                 # F i g h t
-                p2random = random.randrange(0, 9)
+                p2random = random.randrange(0, len(p2cards))
                 if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
                     if userChoice["type"] == "W":
@@ -295,17 +341,19 @@ if __name__ == '__main__':
                 else:
                     error("func: whoWins RETURN not True; False; DRAW", str(
                         whoWins(userChoice, p2cards[p2random])), "RETURN")
+                p2cards.remove(p2cards[p2random])
             else:
                 error("var: userChoice not in p1cards", [
                       userChoice, p1cards], "userChoice AND p1cards")
 
+            testLose()
+
             # Checks if the user is won the game
             if isWin(p1score):
-                print("\n\n\nYOU WON THE GAME!!!\n\n\n")
-                inGame = False
+                win()
                 break
             elif isWin(p2score):
-                lose()
+                lose("player2")
                 break
 
             # Continue
