@@ -314,7 +314,6 @@ if __name__ == '__main__':
                         giveNewCards(False, True, 1)
                 # F i g h t
                 p2random = random.randrange(0, len(p2cards))
-                p2cards.remove(p2cards[p2random])
                 if whoWins(userChoice, p2cards[p2random]):
                     print("WIN!")
                     if userChoice["type"] == "W":
@@ -342,6 +341,7 @@ if __name__ == '__main__':
                 else:
                     error("func: whoWins RETURN not True; False; DRAW", str(
                         whoWins(userChoice, p2cards[p2random])), "RETURN")
+                p2cards.remove(p2cards[p2random])
             else:
                 error("var: userChoice not in p1cards", [
                       userChoice, p1cards], "userChoice AND p1cards")
