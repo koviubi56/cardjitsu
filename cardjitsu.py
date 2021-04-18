@@ -283,11 +283,8 @@ if __name__ == '__main__':
 
             # Showing the cards (p1cards)
             print("Your cards:")
-            num = 0
-            for card in p1cards:
+            for num, card in enumerate(p1cards):
                 print(str(num) + ": " + frth(card))
-                num += 1
-            num = None
 
             # Write the number of your choiced card
             if DEBUG["auto"] is not True:
