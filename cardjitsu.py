@@ -235,7 +235,6 @@ if __name__ == '__main__':
                 input("debug100: press [ENTER]. . .")
 
         inGame = True
-        losed = False
         while inGame:
             print("\n")
 
