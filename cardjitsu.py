@@ -17,7 +17,7 @@ colorama.init(autoreset=True)
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
 
-# (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues.
+# (This is for me) Debug mode [WARNING] This will NOT say anything more!
 DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
     "auto": False,
@@ -207,7 +207,6 @@ def testLose():
 
 
 if __name__ == '__main__':
-    print("\nCovered Software is provided under this License on an \"as is\" basis, without warranty of any kind, either expressed, implied, or statutory, including, without limitation, warranties that the Covered Software is free of defects, merchantable, fit for a particular purpose or non-infringing. The entire risk as to the quality and performance of the Covered Software is with You. Should any Covered Software prove defective in any respect, You(not any Contributor) assume the cost of any necessary servicing, repair, or correction. This disclaimer of warranty constitutes an essential part of this License. No use of any Covered Software is authorized under this License except under this disclaimer.\n")
     inGame = False
     while True:
         # Reseting (or creating the variables for) cards
@@ -235,7 +234,6 @@ if __name__ == '__main__':
                 input("debug100: press [ENTER]. . .")
 
         inGame = True
-        losed = False
         while inGame:
             print("\n")
 
