@@ -121,10 +121,12 @@ def isWin(cards):
             return True
         if idkvar != cards[1][1]["color"] and idkvar != cards[2][1]["color"] and cards[1][1]["color"] != cards[2][1]["color"]:
             return True
-        if idkvar != cards[1][2]["color"] and idkvar != cards[2][2]["color"] and cards[1][2]["color"] != cards[2][2]["color"]:
-            return True
+        return (
+            idkvar != cards[1][2]["color"]
+            and idkvar != cards[2][2]["color"]
+            and cards[1][2]["color"] != cards[2][2]["color"]
+        )
 
-        return False
     except IndexError:
         pass
 
@@ -233,6 +235,7 @@ if __name__ == '__main__':
                 input("debug100: press [ENTER]. . .")
 
         inGame = True
+        losed = False
         while inGame:
             print("\n")
 
@@ -250,7 +253,6 @@ if __name__ == '__main__':
                 while len(p2cards) < 10:
                     giveNewCards(True, False, 1)
 
-            losed = False
             # Showing score (winned cards)
             for i in range(3):
                 if i == 0:
