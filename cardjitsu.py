@@ -112,7 +112,7 @@ def isWin(cards):
         bool: True: The player won  False: The player doesn't won (BUT the players DOES NOT lose!)
     """
     try:  # * This try-except is IMPORTANT!
-        for i in range(0, 3):
+        for i in range(3):
             idkvar = cards[i][0]["color"]
             if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
                 return True
@@ -252,7 +252,7 @@ if __name__ == '__main__':
 
             losed = False
             # Showing score (winned cards)
-            for i in range(0, 3):
+            for i in range(3):
                 if i == 0:
                     word = "Water"
                 elif i == 1:
@@ -263,7 +263,7 @@ if __name__ == '__main__':
                     error("var: i not 0; 1; 2", i, "i")
 
                 try:  # * This try-except is IMPORTANT!
-                    for k in range(0, 3):
+                    for k in range(3):
                         if len(p1score[k]) > 3:
                             lose("tooManyCards")
 
