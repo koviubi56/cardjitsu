@@ -295,9 +295,7 @@ if __name__ == '__main__':
             elif DEBUG["auto"]:
                 user = 0
             # Tests the number is good (0-9)
-            if user < 10 and user > -1:
-                pass
-            else:
+            if user > 10 or user < 0:
                 error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9", user, "user")
             userChoice = {
                 "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
