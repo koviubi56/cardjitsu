@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.2.1] - 2021-04-18
+### Fixed
+- [Removed notImportant everywhere](https://github.com/koviubi56/cardjitsu/pull/19/commits/9c2efc114f7dbe6572e84dc05291ca7eb71a10e8)
+- [Removed `0`s from `range()`s in `for` loops](https://github.com/koviubi56/cardjitsu/pull/19/commits/d2cb999cdb16f8ea6456d9ef47aa9f4e61c6f565)
+- [Added `enumerate()`](https://github.com/koviubi56/cardjitsu/pull/19/commits/20a5d30c24f539342aeb163f0cb5bbbdae92bb4b)
+- [Changed an error check](https://github.com/koviubi56/cardjitsu/pull/19/commits/3ce16ba2f553806298140b8064ca4a63c3797815)
+
 ## [1.2.0] - 2021-04-14
 ### Added
 - Added ITALT10CGAC (If There Are Less Than 10 cards, than Give A Card)

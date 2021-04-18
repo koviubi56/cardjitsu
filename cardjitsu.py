@@ -13,7 +13,6 @@ from colorama import Back
 import colorama
 import random
 colorama.init(autoreset=True)
-notImportant = 1
 # ***************************************************************SETTINGS**************************************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
@@ -39,14 +38,14 @@ def giveNewCards(isPlayer2=True, isPlayer1=True, howMany=10):
         isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
     """
     if isPlayer1:
-        for notImportant in range(howMany):
+        for _ in range(howMany):
             p1cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
                 "color": random.choice(["R", "G", "B"])
             })
     if isPlayer2:
-        for notImportant in range(howMany):
+        for _ in range(howMany):
             p2cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
@@ -113,7 +112,7 @@ def isWin(cards):
         bool: True: The player won  False: The player doesn't won (BUT the players DOES NOT lose!)
     """
     try:  # * This try-except is IMPORTANT!
-        for i in range(0, 3):
+        for i in range(3):
             idkvar = cards[i][0]["color"]
             if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
                 return True
@@ -122,10 +121,12 @@ def isWin(cards):
             return True
         if idkvar != cards[1][1]["color"] and idkvar != cards[2][1]["color"] and cards[1][1]["color"] != cards[2][1]["color"]:
             return True
-        if idkvar != cards[1][2]["color"] and idkvar != cards[2][2]["color"] and cards[1][2]["color"] != cards[2][2]["color"]:
-            return True
+        return (
+            idkvar != cards[1][2]["color"]
+            and idkvar != cards[2][2]["color"]
+            and cards[1][2]["color"] != cards[2][2]["color"]
+        )
 
-        return False
     except IndexError:
         pass
 
@@ -234,6 +235,7 @@ if __name__ == '__main__':
                 input("debug100: press [ENTER]. . .")
 
         inGame = True
+        losed = False
         while inGame:
             print("\n")
 
@@ -251,9 +253,8 @@ if __name__ == '__main__':
                 while len(p2cards) < 10:
                     giveNewCards(True, False, 1)
 
-            losed = False
             # Showing score (winned cards)
-            for i in range(0, 3):
+            for i in range(3):
                 if i == 0:
                     word = "Water"
                 elif i == 1:
@@ -264,7 +265,7 @@ if __name__ == '__main__':
                     error("var: i not 0; 1; 2", i, "i")
 
                 try:  # * This try-except is IMPORTANT!
-                    for k in range(0, 3):
+                    for k in range(3):
                         if len(p1score[k]) > 3:
                             lose("tooManyCards")
 
@@ -284,11 +285,8 @@ if __name__ == '__main__':
 
             # Showing the cards (p1cards)
             print("Your cards:")
-            num = 0
-            for card in p1cards:
+            for num, card in enumerate(p1cards):
                 print(str(num) + ": " + frth(card))
-                num += 1
-            num = None
 
             # Write the number of your choiced card
             if DEBUG["auto"] is not True:
@@ -299,9 +297,7 @@ if __name__ == '__main__':
             elif DEBUG["auto"]:
                 user = 0
             # Tests the number is good (0-9)
-            if user < 10 and user > -1:
-                pass
-            else:
+            if user > 10 or user < 0:
                 error("var: user not 0; 1; 2; 3; 4; 5; 6; 7; 8; 9", user, "user")
             userChoice = {
                 "type": p1cards[user]["type"], "level": p1cards[user]["level"], "color": p1cards[user]["color"]}
