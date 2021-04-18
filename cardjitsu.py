@@ -17,7 +17,7 @@ colorama.init(autoreset=True)
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
 
-# (This is for me) Debug mode [WARNING] This will NOT say anything more! This checks if there any issues.
+# (This is for me) Debug mode [WARNING] This will NOT say anything more!
 DEBUG = {
     # If True: the program is automaticly selecting the 0 card  False: you can select a card
     "auto": False,
