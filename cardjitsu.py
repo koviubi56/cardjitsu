@@ -13,7 +13,6 @@ from colorama import Back
 import colorama
 import random
 colorama.init(autoreset=True)
-notImportant = 1
 # ***************************************************************SETTINGS**************************************************************************************
 # IF YOU DOESN'T WANT COLORS, CHANGE THIS TO False ! (default: True)
 COLORS = True
@@ -39,14 +38,14 @@ def giveNewCards(isPlayer2=True, isPlayer1=True, howMany=10):
         isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
     """
     if isPlayer1:
-        for notImportant in range(howMany):
+        for _ in range(howMany):
             p1cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
                 "color": random.choice(["R", "G", "B"])
             })
     if isPlayer2:
-        for notImportant in range(howMany):
+        for _ in range(howMany):
             p2cards.append({
                 "type": random.choice(["W", "F", "S"]),
                 "level": random.randrange(1, 11),
