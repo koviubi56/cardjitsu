@@ -208,6 +208,8 @@ def testLose():
 
 if __name__ == '__main__':
     inGame = False
+    losed = False
+
     while True:
         # Reseting (or creating the variables for) cards
         p1cards = []
@@ -215,8 +217,6 @@ if __name__ == '__main__':
 
         p2cards = []
         p2score = [[], [], []]
-
-        losed = False
 
         # Giving new cards
         giveNewCards()
