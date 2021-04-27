@@ -27,7 +27,7 @@ If you are creating an issue, please, use the templates, and fill out them!
 An issue can be a feature request, or bug report! If you have a question, do not use an issue!
 
 # Checking
-We are checking issues, pull requests at weekends, but if we can, we check it on every day (~12:30-18:00 CET | ~11:30-17:00 UTC).
+We are checking issues, pull requests at everyday from 13:00 to 19:00 CET.
 
 # Examples
 ## Bug report
