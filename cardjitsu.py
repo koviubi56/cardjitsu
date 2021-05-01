@@ -173,7 +173,7 @@ def frth(card):
               card["level"], "card[\"level\"]")
 
 
-def lose(reason="ERROR! NO REASON PROVIDED!"):
+def lose():
     """Lose the game.
     """
     global inGame
@@ -203,7 +203,7 @@ def win():
 def testLose():
     for j in range(3):  # j has no meanings. it's just j. why not?
         if len(p1score[j]) > 3:
-            lose("tooManyCards")
+            lose()
 
 
 if __name__ == '__main__':
@@ -265,7 +265,7 @@ if __name__ == '__main__':
                 try:  # * This try-except is IMPORTANT!
                     for k in range(3):
                         if len(p1score[k]) > 3:
-                            lose("tooManyCards")
+                            lose()
 
                     if len(p1score[i]) != 0:
                         if len(p1score[i]) == 1:
@@ -277,9 +277,9 @@ if __name__ == '__main__':
                             print(word + " cards: " + frth(p1score[i][0]) + "; " + frth(
                                 p1score[i][1]) + "; " + frth(p1score[i][2]))
                         elif len(p1score[i]) > 3:
-                            lose("tooManyCards")
+                            lose()
                 except IndexError:
-                    lose("tooManyCards")
+                    lose()
 
             # Showing the cards (p1cards)
             print("Your cards:")
@@ -347,7 +347,7 @@ if __name__ == '__main__':
                 win()
                 break
             elif isWin(p2score):
-                lose("player2")
+                lose()
                 break
 
             # Continue
