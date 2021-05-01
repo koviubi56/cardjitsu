@@ -113,10 +113,10 @@ def isWin(cards):
     """
     try:  # * This try-except is IMPORTANT!
         for i in range(3):
-            idkvar = cards[i][0]["color"]
+            idkvar = cards[i][0]["color"] # Checks if in one type, the cards have different colors.
             if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
                 return True
-        idkvar = cards[0][0]["color"]
+        idkvar = cards[0][0]["color"] # Checks if in three types, the cards have different colors.
         if idkvar != cards[1][0]["color"] and idkvar != cards[2][0]["color"] and cards[1][0]["color"] != cards[2][0]["color"]:
             return True
         if idkvar != cards[1][1]["color"] and idkvar != cards[2][1]["color"] and cards[1][1]["color"] != cards[2][1]["color"]:
