@@ -38,19 +38,38 @@ def giveNewCards(isPlayer2=True, isPlayer1=True, howMany=10):
         isPlayer1 (bool, optional): Player1 needs new cards? Defaults to True.
     """
     if isPlayer1:
+        global p1cards
         for _ in range(howMany):
-            p1cards.append({
-                "type": random.choice(["W", "F", "S"]),
-                "level": random.randrange(1, 11),
-                "color": random.choice(["R", "G", "B"])
-            })
+            try:
+                p1cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
+            except NameError:
+                p1cards = []
     if isPlayer2:
+        global p2cards
         for _ in range(howMany):
-            p2cards.append({
-                "type": random.choice(["W", "F", "S"]),
-                "level": random.randrange(1, 11),
-                "color": random.choice(["R", "G", "B"])
-            })
+            try:
+                p2cards.append({
+                    "type": random.choice(["W", "F", "S"]),
+                    "level": random.randrange(1, 11),
+                    "color": random.choice(["R", "G", "B"])
+                })
+            except NameError:
+                p2cards = []
+
+
+def getVar(var):
+    if var == "p1cards":
+        return p1cards
+    elif var == "p1score":
+        return p1score
+    elif var == "p2cards":
+        return p2cards
+    elif var == "p2score":
+        return p2score
 
 
 def error(errcode, varToShow=None, nameOfVar=None):
@@ -106,17 +125,19 @@ def isWin(cards):
     """Checks if the user wins or not
 
     Args:
-        cards (dict): The cards
+        cards (list): The cards
 
     Returns:
         bool: True: The player won  False: The player doesn't won (BUT the players DOES NOT lose!)
     """
     try:  # * This try-except is IMPORTANT!
         for i in range(3):
-            idkvar = cards[i][0]["color"] # Checks if in one type, the cards have different colors.
+            # Checks if in one type, the cards have different colors.
+            idkvar = cards[i][0]["color"]
             if idkvar != cards[i][1]["color"] and idkvar != cards[i][2]["color"] and cards[i][1]["color"] != cards[i][2]["color"]:
                 return True
-        idkvar = cards[0][0]["color"] # Checks if in three types, the cards have different colors.
+        # Checks if in three types, the cards have different colors.
+        idkvar = cards[0][0]["color"]
         if idkvar != cards[1][0]["color"] and idkvar != cards[2][0]["color"] and cards[1][0]["color"] != cards[2][0]["color"]:
             return True
         if idkvar != cards[1][1]["color"] and idkvar != cards[2][1]["color"] and cards[1][1]["color"] != cards[2][1]["color"]:
