@@ -16,6 +16,8 @@ Please, follow these rules! If you doesn't follow these rules,
 
 If you created an issue, or a pull request, and you doesn't get an answare in 1-2 days, feel free to ping someone!
 
+Please, test your code!
+
 # Questions
 If you have questions, ask it on the `Discussions` tab! If you have an idea, or an error, report it on the `Issues` tab!
 
@@ -23,10 +25,6 @@ If you have questions, ask it on the `Discussions` tab! If you have an idea, or 
 If you are creating an issue, please, use the templates, and fill out them!
 
 An issue can be a feature request, or bug report! If you have a question, do not use an issue!
-
-## Pull requests
-Please, test your code! The tests are in the `test_useful.py` file. Not unittest, pytest. 
-If you created a new feature, create a test for it with [random inputs](https://github.com/koviubi56/useful/blob/586a9b697c2482512f599b8986aeeb74a2169134/test_useful.py#L26-L48), and [not random inputs](https://github.com/koviubi56/useful/blob/586a9b697c2482512f599b8986aeeb74a2169134/test_useful.py#L6-L25).
 
 # Checking
 We are checking issues, pull requests at everyday from 13:00 to 19:00 CET.
