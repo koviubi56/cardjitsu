@@ -14,7 +14,7 @@ Please, follow these rules! If you doesn't follow these rules,
   - you can't get an answare,
   - we can tell to you, to write it again.
 
-If you created an issue, or a pull request, and you doesn't get an answare in 7 days, feel free to ping someone!
+If you created an issue, or a pull request, and you doesn't get an answare in 1-2 days, feel free to ping someone!
 
 If you are edit the code, please, test it!
 
